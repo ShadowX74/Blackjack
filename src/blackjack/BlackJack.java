@@ -5,7 +5,6 @@
  */
 package blackjack;
 
-
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -26,22 +25,39 @@ import javafx.stage.Stage;
  * @author ShadowX
  */
 public class BlackJack extends Application {
-    
+
+    //https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
+/*10 points for graphics
+
+10 points objects
+
+10 points polymorphism
+
+10 points abstract classes
+
+10 points linked lists
+
+10 points 2D array
+
+10 points >2D array (or arraylist)
+
+10 points - maps & keys
+
+20 points playable, worthwhile game*/
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Blackjack");
         Group root = new Group();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        
-        Canvas canvas = new Canvas(512 - 64, 256 );
+
+        Canvas canvas = new Canvas(512 - 64, 256);
         root.getChildren().add(canvas);
-        
-        
+
         Button hitBtn = new Button();
         hitBtn.setText("Hit");
         hitBtn.setOnAction(new EventHandler<ActionEvent>() {
-            
+
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Hello World!");
@@ -49,60 +65,56 @@ public class BlackJack extends Application {
         });
 
         root.getChildren().add(hitBtn);
-        
- 
+
         ArrayList<String> input = new ArrayList<String>();
- 
+
         scene.setOnKeyPressed(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
-                    String code = e.getCode().toString();
- 
-                    // only add once... prevent duplicates
-                    if ( !input.contains(code) )
-                        input.add( code );
+                new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                String code = e.getCode().toString();
+
+                // only add once... prevent duplicates
+                if (!input.contains(code)) {
+                    input.add(code);
                 }
-            });
- 
+            }
+        });
+
         scene.setOnKeyReleased(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
-                    String code = e.getCode().toString();
-                    input.remove( code );
-                }
-            });
- 
+                new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                String code = e.getCode().toString();
+                input.remove(code);
+            }
+        });
+
         GraphicsContext gc = canvas.getGraphicsContext2D();
- 
-        Image left = new Image( "left.png" );
-        Image leftG = new Image( "leftG.png" );
- 
-        Image right = new Image( "right.png" );
-        Image rightG = new Image( "rightG.png" );
- 
-        new AnimationTimer()
-        {
-            public void handle(long currentNanoTime)
-            {
+
+        Image left = new Image("left.png");
+        Image leftG = new Image("leftG.png");
+
+        Image right = new Image("right.png");
+        Image rightG = new Image("rightG.png");
+
+        new AnimationTimer() {
+            public void handle(long currentNanoTime) {
                 // Clear the canvas
-                gc.clearRect(0, 0, 512,512);
- 
-                if (input.contains("LEFT"))
-                    gc.drawImage( leftG, 64, 64 );
-                else
-                    gc.drawImage( left, 64, 64 );
- 
-                if (input.contains("RIGHT"))
-                    gc.drawImage( rightG, 256, 64 );
-                else
-                    gc.drawImage( right, 256, 64 );
+                gc.clearRect(0, 0, 512, 512);
+
+                if (input.contains("LEFT")) {
+                    gc.drawImage(leftG, 64, 64);
+                } else {
+                    gc.drawImage(left, 64, 64);
+                }
+
+                if (input.contains("RIGHT")) {
+                    gc.drawImage(rightG, 256, 64);
+                } else {
+                    gc.drawImage(right, 256, 64);
+                }
             }
         }.start();
- 
+
         primaryStage.show();
     }
 
