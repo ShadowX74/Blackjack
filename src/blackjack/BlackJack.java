@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 public class BlackJack extends Application {
 
     //https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
+    //Due March 4
 /*10 points for graphics
 
 10 points objects
